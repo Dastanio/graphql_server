@@ -1,0 +1,55 @@
+type OrganizationOutput {
+	organizationId: String
+	organizationName: String
+	organizationLevel: Int
+	parentOrganizationId: String
+	parentOrganizationName: String
+	parentOrganizationLevel: Int
+	rootOrganizationId: String
+	rootOrganizationName: String
+	rootOrganizationLevel: Int
+	treeOrganizationId: String
+	treeOrganizationName: String
+}
+
+type GetInternalUserOutput {
+	auth0UserId: String
+	auth0Metadata: String
+	userId: String
+	additionalData: String
+	userNickname: String
+	userProfilePhotoUrl: String
+	userFirstName: String
+	userLastName: String
+	userMiddleName: String
+	userPrimaryEmail: String
+	userSecondaryEmail: [String]
+	userPrimaryPhoneNumber: String
+	userSecondaryPhoneNumber: [String]
+	userPositionName: String
+	gender: GenderOutput
+	role: RoleOutput
+	organization: OrganizationOutput
+}
+
+type RoleOutput  {
+	roleId: String
+	roleTechnicalName: String
+	rolePublicName: String
+	roleDescription: String
+}
+
+type GenderOutput {
+	genderId: String
+	genderTechnicalName: String
+	genderPublicName: String
+}
+
+type Query {
+	# Получить данные о внутреннем пользователе.
+	getInternalUser(auth0UserId: String!): GetInternalUserOutput
+}
+
+schema {
+	query: Query
+}
